@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+JUNITPATH="/libs/junit5.jar"
+
+if [[ -f ${JUNITPATH} ]]; then
+    cp ${JUNITPATH} ../
+fi
+
+if [[ ! -f RedBlackTree.java ]]; then
+	echo
+	echo "Submission Failed Check: file RedBlackTree.java not found"
+	exit 1
+fi
+
+if ! javac -cp ../junit5.jar:. *.java; then
+	echo
+	echo "Submission Failed Check: cannot compile all java files in submission"
+	exit 1
+fi
+
+if ! java -jar ../junit5.jar --class-path=. --select-class=P104SubmissionChecker; then
+	echo
+	echo "Submission Failed Check: one or more JUnit tests failed; if you've submitted your RedBlackTree by the midweek deadline, one of the tests is expected to fail and should pass after you've made your final submission."
+	exit 1
+fi
+
+echo
+echo "Submission Passed Basic Scan"
+exit 0

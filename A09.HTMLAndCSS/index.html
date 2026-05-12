@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>B-trees</title>
+  <meta name="author" content="Adam Shebani">
+  <link rel="stylesheet" href="styles.css">
+</head> 
+<body>
+  <h1 id="page-title">B-trees</h1>
+
+  <h2>What is a B-tree?</h2>
+  <p id="definition">A B-tree is a balanced search tree that keeps keys sorted and supports search, insertion, and deletion in logarithmic time.</p>
+  
+  <h2>Requirements</h2>
+  <ul class = "DS-Reqs">
+    <li>For BTree(m):</li>
+    <li>Each Node can Have m children and m-l keys</li>
+    <li>Values and children are ordered</li>
+    <li>All Non-leaf nodes must have at most m children</li>
+    <li>All Leaves must be on the same level</li>
+    <li>Typically in cs400, m = 4, this is called a 2-3-4 Tree</li>
+  <h2>Key features</h2>
+  </ul>
+
+  <ul  class="feature-list">
+    <li>Balanced height</li>
+    <li>High branching factor (many children per node)</li>
+    <li>Efficient for disk and SSD storage</li>
+    <li>B-Trees Grow Upwards</li>
+  </ul>
+
+
+  <img src="https://image4.slideserve.com/244650/an-example-b-tree-l.jpg" alt="B-tree diagram" height = "880" width = "1040">
+
+
+  <p><a href="https://en.wikipedia.org/wiki/B-tree">More about B-trees</a></p>
+</body>
+</html>

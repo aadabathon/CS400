@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ ! -f ".gitignore" ]; then
+    echo "Warning Submission Incomplete: submission does not contain a .gitignore file. It shall be a plain text file containing paths ignored by git."
+    exit 1
+fi
+
+if [[ $(git log --pretty=format:"%h %s" | grep -c "Added Header Comment") < 1 ]]; then
+    echo "Warning Submission Incomplete: submission does not include a commit with \"Added Header Comment\" as part of its commit subject (first line of commit message)"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0
+

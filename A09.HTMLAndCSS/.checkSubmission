@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ ! -f styles.css ]]; then
+    echo "Warning Submission Incomplete: Didn't find the styles.css file that is needed for a complete submission."
+    exit 1
+fi
+
+if [[ $(grep -Pic "<title>" index.html) -lt 1 ]]; then
+    echo "Warning Submission Incomplete: failed to find the element <title> in this submission's index.html file"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

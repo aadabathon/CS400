@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [[ $(grep -ci "return null" CalculatorApp.java) -gt 0 ]]; then
+    echo "Warning Submission Incomplete: found \"return null\" within CalculatorApp.java of your submission, and was expecting these to be removed."
+    exit 1
+fi
+
+COMPILER_ERRORS=$(javac CalculatorApp.java 2>&1)
+if [[ $? -ne 0 ]]; then
+    echo "Warning Submission Incomplete: expected the Calculator.java file in your submission to compile without any errors, but found the followin errors: ${COMPILER_ERRORS}"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

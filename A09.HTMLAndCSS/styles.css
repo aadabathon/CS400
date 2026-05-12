@@ -1,0 +1,13 @@
+
+h1 {
+  color : red;
+  text-align: center;
+}
+
+.feature-list {
+  list-style-type: square;
+}
+
+#definition {
+  font-style: italic;
+}

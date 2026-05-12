@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ $(ls | grep -c Makefile) < 1 ]]; then
+    echo "Warning Submission Incomplete: Submission is missing a file named Makefile, which should have been created to hold junit tests."
+    exit 1
+fi
+
+if [[ $(cat Makefile | grep -Pc "^Test") < 1 ]]; then
+    echo "Warning Submission Incomplete: Makefile should contain a rule with the target Test, but this was not found in this submission."
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

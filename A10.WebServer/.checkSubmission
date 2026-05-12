@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [[ $(grep -ci "name_value" HelloWebServer.java) -eq 0 ]]; then
+    echo "Warning Submission Incomplete: expected variable name_value within HelloWebServer.java of your submission, but doesn't exist."
+    exit 1
+fi
+
+
+COMPILER_ERRORS=$(javac HelloWebServer.java 2>&1)
+if [[ $? -ne 0 ]]; then
+    echo "Warning Submission Incomplete: expected the HelloWebServer.java file in your submission to compile without any errors, but found the followin errors: ${COMPILER_ERRORS}"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0
+

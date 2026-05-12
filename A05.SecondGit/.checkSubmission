@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+if [ ! -f "riddles.txt" ]; then
+    echo "Warning Submission Incomplete: submission does not contain riddles.txt"
+    exit 1
+fi
+
+if [[ $(git log --pretty=format:"%h %s" | grep -c "Added first riddle.") -lt 1 ]]; then
+    echo "Warning Submission Incomplete: No commit found with \"Added first riddle.\""
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

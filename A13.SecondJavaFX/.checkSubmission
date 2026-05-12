@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ $(grep "setTitle" ButtonGame.java | grep -ci "ButtonGame") -lt 1 ]]; then
+    echo "Warning Submission Incomplete: unable to find the title ButtonGame on the same line within your submission as a call to the method setTitle"
+    exit 1
+fi
+
+if [[ ! -f screenshot.png ]]; then
+    echo "Warning Submission Incomplete: failed to find a screenshot inside your assignment folder"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

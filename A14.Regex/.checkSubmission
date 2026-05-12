@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ ! -f Makefile ]]; then
+    echo "Warning Submission Incomplete: failed to find Makefile inside your assignment folder"
+    exit 1
+fi
+
+if [[ $(grep -Pc "\?\?\?" Makefile) -gt 0 ]]; then
+    echo "Warning Submission Incomplete: found ??? in Makefile, but all of those placeholders should be replaced with regex"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

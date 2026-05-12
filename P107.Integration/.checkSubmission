@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+JUNITPATH="/libs/junit5.jar"
+
+if [[ -f ${JUNITPATH} ]]; then
+    cp ${JUNITPATH} ../
+fi
+
+if [[ ! -f Makefile ]]; then
+	echo
+	echo "Submission Failed Check: no Makefile found"
+	exit 1
+fi
+
+if ! make -n runApplication ; then
+	echo
+	echo "Submission Failed Check: Makefile does not include the target runApplication"
+	exit 1
+fi
+
+if ! make -n runAllTests ; then
+    echo
+    echo "Submission Failed Check: Makefile does not include the target runAllTests"
+    exit 1
+fi
+
+if ! make -n clean ; then
+    echo
+    echo "Submission Failed Check: Makefile does not include the target clean"
+    exit 1
+fi
+
+if grep -Pv '//' App.java | grep -Pq "_Placeholder"; then
+    echo
+    echo "Submission Failed Check: App.java includes references to Tree_Placeholder or Backend_Placeholder"
+    exit 1
+fi
+
+echo
+echo "Submission Passed Basic Scan"
+exit 0

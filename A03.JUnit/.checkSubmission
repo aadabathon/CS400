@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ $(ls | grep -c junit5.jar) > 0 ]]; then
+    echo "Warning Submission Incomplete: submission contains junit5.jar file, but should not."
+    exit 1
+fi
+
+if [[ $(ls | grep -c MyFirstJUnit.java) < 1 ]]; then
+    echo "Warning Submission Incomplete: submission is missing a file named MyFirstJUnit.java, which should have been created to hold junit tests."
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

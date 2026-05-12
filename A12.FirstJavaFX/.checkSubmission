@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ $(grep -ci "CS400" FirstJavaFX.java) -lt 1 ]]; then
+    echo "Warning Submission Incomplete: unable to find the title CS400 within your submission"
+    exit 1
+fi
+
+if [[ ! -f screenshot.png ]]; then
+    echo "Warning Submission Incomplete: failed to find a screenshot inside your assignment folder"
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

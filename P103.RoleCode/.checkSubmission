@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+JUNITPATH="/libs/junit5.jar"
+
+if [[ ! -f groupAndRole.txt ]]; then
+  echo "Warning Submission Incomplete: submission does not contain groupAndRole.txt, which should not have been deleted."
+  exit 1
+fi
+
+ROLE=$(cat groupAndRole.txt | grep -Pio "Backend|Frontend")
+ROLEFILE="${ROLE~}.java"
+ROLETEST="${ROLE~}Tests.java"
+ROLEINTRF="${ROLE~}Interface.java"
+
+if [[ ! -f ${ROLEFILE} ]]; then
+  echo "Warning Submission Incomplete: submission does not contain ${ROLEFILE}, but should"
+  exit 1
+fi
+
+if ! grep -Pzq "implements[^\{]{1,100}${ROLEINTRF%\.java}" ${ROLEFILE}; then
+  echo "Warning Submission Incomplete: ${ROLEFILE} does not implement ${ROLEINTRF%\.java}, but should"
+  exit 1
+fi
+
+if ! javac -cp .:${JUNITPATH} ${ROLEFILE}; then
+  echo "Warning Submission Incomplete: ${ROLEFILE} does not compile, but should"
+  exit 1
+fi
+
+if ! grep -Pzq "@(Parameterized)?Test[^\(]{1,15}(public)? void ${ROLE,,}Test1" ${ROLETEST}; then
+  echo "Warning Submission Incomplete: ${ROLETEST} does not contain a JUnit test method called ${ROLE,,}Test1, but should"
+  exit 1
+fi
+
+if ! grep -Pzq "@(Parameterized)?Test[^\(]{1,15}(public)? void ${ROLE,,}Test2" ${ROLETEST}; then
+  echo "Warning Submission Incomplete: ${ROLETEST} does not contain a JUnit test method called ${ROLE,,}Test2, but should"
+  exit 1
+fi
+
+if ! grep -Pzq "@(Parameterized)?Test[^\(]{1,15}(public)? void ${ROLE,,}Test3" ${ROLETEST}; then
+  echo "Warning Submission Incomplete: ${ROLETEST} does not contain a JUnit test method called ${ROLE,,}Test3, but should"
+  exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

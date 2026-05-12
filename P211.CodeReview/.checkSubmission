@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+JUNITPATH="/libs/junit5.jar"
+
+if [[ -f ${JUNITPATH} ]]; then
+    cp ${JUNITPATH} ../
+fi
+
+if [[ ! -f TeamTests.java ]]; then
+	echo
+	echo "Submission Failed Check: file TeamTests.java not found"
+	exit 1
+fi
+
+if [[ 3 -gt $(grep -Pc "@Test" TeamTests.java) ]]; then
+	echo
+	echo "Submission Failed Check: TeamTests.java should contain at least 3 valid JUnit 5 test methods, but does not"
+	exit 1
+fi
+
+echo
+echo "Submission Passed Basic Scan"
+exit 0

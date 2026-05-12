@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ $(ls | grep -c todo.txt) > 0 ]]; then
+    echo "Warning Submission Incomplete: submission contains file todo.txt, which should have been deleted."
+    exit 1
+fi
+
+if [[ $(ls | grep -c valuable) < 1 ]]; then
+    echo "Warning Submission Incomplete: submission is missing a folder named valuable containing at least one file, which should have been created."
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [[ $(grep -c ":hover" dessertGame.html) -lt 1 ]]; then
+    echo "Warning Submission Incomplete: failed to find the css selector that includes :hover in your submission"
+    exit 1
+fi
+
+if [[ $(grep -Pic "Desert" dessertGame.html) -lt 2 ]]; then
+    echo "Warning Submission Incomplete: failed to find the label Desert in your submission"
+    exit 1
+fi
+
+echo "Submission Passed Basic Scan"
+exit 0
